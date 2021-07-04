@@ -1,0 +1,18 @@
+{
+  "name": "HubBOT",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsnd --inspect --respawn --transpile-only --ignore-watch node_modules -r dotenv/config src/index.ts"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5"
+  }
+}

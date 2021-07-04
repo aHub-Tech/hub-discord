@@ -1,0 +1,53 @@
+{
+  "prefix": "📌",
+  "rules": [
+    {
+      "name": "Linguagem",
+      "description": "Linguajar severamente vulgar não é permitido."
+    },
+    {
+      "name": "Preconceito",
+      "description": "Racismo / Sexismo / Homofobia / Trolagem / Bullying e qualquer forma de ofensa NÃO será tolerado."
+    },
+    {
+      "name": "Span",
+      "description": " NÃO envie spam para membros deste servidor."
+    },
+    {
+      "name": "Conteúdo",
+      "description": "Você pode discutir sobre pirataria, mas NÃO pode postar links ou distribuir qualquer produto e/ou software roubado. Você será banido se for encontrado fazendo isso."
+    },
+    {
+      "name": "Discussão",
+      "description": "NÃO deve haver discussão sobre formas de atividades online maliciosas neste servidor."
+    },
+    {
+      "name": "NSFW",
+      "description": "Se você for encontrado postando links maliciosos, você SERÁ banido."
+    },
+    {
+      "name": "Social",
+      "description": "Discussão política é permitida, no entanto, mantenha-a de forma amigável e nos canais corretos. Se mudar para uma discussão, você será solicitado a parar ou levar a conversa ao DM."
+    },
+    {
+      "name": "Divulgação",
+      "description": "NÃO poste links de convite do Discord. Se quer divulgar alguma comunidade, converse com a Staff e a mesma fará a divulgação se for coerente."
+    },
+    {
+      "name": "Links",
+      "description": "A autopromoção é permitida, mas pedimos que você poste seus links apenas uma vez por dia e nos canais corretos. Não exagere!"
+    },
+    {
+      "name": "Salas",
+      "description": "Utilize corretamente cada sala do servidor para o assunto a qual ela pertence."
+    },
+    {
+      "name": "Reglamações",
+      "description": "Qualquer dúvida, reclamação, denúncia, etc, entre em contato com membros da Staff (Admins, Moderadores, etc)."
+    },
+    {
+      "name": "Diverta-se",
+      "description": "Mais importante: Divirta-se e aproveite sua estadia!"
+    }
+  ]
+}

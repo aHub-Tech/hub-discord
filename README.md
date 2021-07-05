@@ -1,8 +1,8 @@
 # hub-discord
 
 <p align="center">
-  <a href="#">Introdução</a> |
-  <a href="#">Contribuindo</a>
+  <a href="#introdução">Introdução</a> |
+  <a href="#contribuindo">Contribuindo</a>
 </p>
 
 ## Introdução

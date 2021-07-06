@@ -2,15 +2,22 @@
 
 <p align="center">
   <a href="#introdução">Introdução</a> |
+  <a href="#tecnologias">Tecnologias</a> |
   <a href="#contribuindo">Contribuindo</a>
 </p>
 
 ## Introdução
 Um bot de Discord para entreterimento de membros e gerenciamento do servidor, como cargo por reação e criação de canal.
 
-## Iniciando projeto
+## Tecnologias
+As ferramentas e tecnologias usadas no projeto foram:
 
-### Contribuindo
+- **Node.js**
+- **Typescript**
+- **TS-Node-Dev**
+- **Discord.js**
+
+## Contribuindo
 Para começar você pode clonar o repositório e instalar as dependencias, com os seguinte comandos.
 
 Clonando repositório.

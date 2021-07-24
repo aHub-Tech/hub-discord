@@ -1,18 +1,35 @@
 import { MessageReaction } from "discord.js";
+import { MessageService } from "../database/services/MessageService";
 import { ICommandsProps } from "../DTO/CommandsDTO";
 
-const reactionRole = ({ client, message, args }: ICommandsProps) => {
-  message.channel.send('test').then(async msg => {
-    await msg.react('🚀');
+const { message: messageReaction, reactions } = require('../../reaction.json');
 
-    const filter = (reaction: MessageReaction) => ['🚀'].includes(reaction.emoji.name);
+const reactionRole = ({ client, message, args }: ICommandsProps) => {
+  const messageService = new MessageService();
+
+  message.channel.send(messageReaction).then(async msg => {
+    reactions.map(async (reaction: { name: string }) => {
+      await msg.react(reaction.name);
+
+      await messageService.create({
+        guild_id: String(message.guild?.id),
+        message_id: msg.id
+      });
+    });
+
+    const filter = (reaction: MessageReaction) => reactions.includes(reaction.emoji.name);
 
     const reactionCollector = msg.createReactionCollector(filter);
 
     reactionCollector.on('collect', (reaction, user) => {
       const guildMember = message.guild?.members.cache.get(user.id);
-
-      guildMember?.roles.add('861291167878873138');
+      const emojiName = reaction.emoji.name;
+    
+      const findEmojis = reactions.find((emoji: { name: string, reaction_id: string }) => emoji.name === emojiName);
+    
+      if(!findEmojis) return;
+    
+      guildMember?.roles.add(findEmojis.reaction_id);
     });
   });
 }

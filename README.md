@@ -3,7 +3,8 @@
 <p align="center">
   <a href="#introdução">Introdução</a> |
   <a href="#tecnologias">Tecnologias</a> |
-  <a href="#contribuindo">Contribuindo</a>
+  <a href="#contribuindo">Contribuindo</a> |
+  <a href="#">Implementações</a>
 </p>
 
 ## Introdução
@@ -41,3 +42,10 @@ Para iniciar o projeto você pode usar o seguinte comando.
 ```bash
 yarn dev
 ```
+
+## Implementações
+
+### Reaction Role
+Reaction Role é comando de cargo por reação criado para dar e remover cargos dos membros a partir da reção.
+
+para usar o comando basta digitar `h.rr` no chat. O bot irá enviar a menssagem presente em `reaction.json`, e adicionar as reações. A mensagem e as reações estão em `json`, mas futuramente poderão vir de uma API.

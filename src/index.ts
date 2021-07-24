@@ -1,13 +1,19 @@
 import { Client, MessageEmbed } from "discord.js";
 import { event } from './events/message';
-import fs from 'fs';
-import path from 'path';
 import { Commands } from "./DTO/CommandsDTO";
+import { getEmojis } from "./utils/getEmojis";
+import path from 'path';
+import fs from 'fs';
 
-const client = new Client();
+import { MessageService } from "./database/services/MessageService";
+
+import './database';
+
+const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+
+const messageService = new MessageService();
 
 const commandsPath = path.join(__dirname, 'commands');
-
 const commands: Commands = {};
 
 fs.readdir(commandsPath, (error, files) => {
@@ -41,6 +47,34 @@ client.on('ready', () => {
   }
 
   setInterval(setActivity, 60000);
+});
+
+client.on('messageReactionAdd', async (reaction, user) => {
+  const { guild, id } = reaction.message;
+  const guildMember = guild?.members.cache.get(user.id);
+
+  const message = await messageService.getMessage({ guild_id: String(guild?.id), message_id: id});
+
+  if(message?.message_id !== id) return;
+
+  const emojiName = reaction.emoji.name;
+  const emoji = getEmojis(emojiName);
+  
+  guildMember?.roles.add(emoji.reaction_id);
+});
+
+client.on('messageReactionRemove', async (reaction, user) => {
+  const { guild, id } = reaction.message;
+  const guildMember = guild?.members.cache.get(user.id);
+
+  const message = await messageService.getMessage({ guild_id: String(guild?.id), message_id: id});
+
+  if(message?.message_id !== id) return;
+
+  const emojiName = reaction.emoji.name;
+  const emoji = getEmojis(emojiName);
+
+  guildMember?.roles.remove(emoji.reaction_id);
 });
 
 client.on('guildMemberAdd', member => {

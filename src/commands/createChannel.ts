@@ -1,9 +1,13 @@
 import { OverwriteResolvable, PermissionString } from "discord.js";
 import { ICommandsProps } from "../DTO/CommandsDTO";
 
+import cron from 'node-cron';
+
 const createChannel = ({ client, message, args }: ICommandsProps) => {
   const mentions = message.mentions.users;
   const everyoneRole = message.guild?.roles.everyone.id as string;
+
+  message.delete();
 
   if(mentions.size <= 0) return message.reply("Desculpe, você precisa mencionar um ou mais membros");
 
@@ -29,15 +33,20 @@ const createChannel = ({ client, message, args }: ICommandsProps) => {
   });
 
   message.guild?.channels.create(channelName, {
-    type: "text",
-    permissionOverwrites: membersPermissions,
-  });
-
-  message.guild?.channels.create(channelName, {
     type: "voice",
     userLimit: mentions.size + 1,
     permissionOverwrites: membersPermissions,
   });
+
+  const job = cron.schedule("* */2 * * *", () => {
+      const channel = message.guild?.channels.cache.find(channel => channel.name === channelName);
+
+      if(channel) channel.delete();
+
+      job.destroy();
+  });
+
+  job.start();
 }
 
 export const details = {

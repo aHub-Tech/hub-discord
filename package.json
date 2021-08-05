@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "start": "node dist/index.js",
     "test": "jest",
-    "build": "tsc",
     "dev": "tsnd --inspect --respawn --transpile-only --ignore-watch node_modules -r dotenv/config src/index.ts",
     "typeorm": "tsnd -r dotenv/config ./node_modules/typeorm/cli.js"
   },

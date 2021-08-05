@@ -1,6 +1,7 @@
 import { MessageReaction } from "discord.js";
 import { MessageService } from "../database/services/MessageService";
 import { ICommandsProps } from "../DTO/CommandsDTO";
+import { getEmoji } from "../utils/getEmojis";
 
 const { message: messageReaction, reactions } = require('../../reaction.json');
 
@@ -25,11 +26,9 @@ const reactionRole = ({ client, message, args }: ICommandsProps) => {
       const guildMember = message.guild?.members.cache.get(user.id);
       const emojiName = reaction.emoji.name;
     
-      const findEmojis = reactions.find((emoji: { name: string, reaction_id: string }) => emoji.name === emojiName);
+      const emoji = getEmoji(emojiName);
     
-      if(!findEmojis) return;
-    
-      guildMember?.roles.add(findEmojis.reaction_id);
+      guildMember?.roles.add(emoji.reaction_id);
     });
   });
 }

@@ -42,10 +42,16 @@ const createChannel = ({ client, message, args }: ICommandsProps) => {
     permissionOverwrites: membersPermissions,
   }).then(channel => channel.setParent(categoryID));
 
-  const job = cron.schedule("* */2 * * *", () => {
+  const job = cron.schedule("*/5 * * * *", () => {
       const channel = message.guild?.channels.cache.find(channel => channel.name === channelName);
+      
+      // Verificar se existem pesoas na sala
+      const channelMembers = channel?.members.size;
 
-      if(channel) channel.delete();
+      if(channelMembers !== 0) return
+
+      // Verificar se existe canal, se existir deleta e para o CRON
+      channel?.delete();
 
       job.destroy();
   });

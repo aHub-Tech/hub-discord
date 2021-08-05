@@ -1,9 +1,9 @@
 const { reactions } = require('../../reaction.json');
 
-export function getEmojis(emojiName: string) {
-  const findEmojis = reactions.find((emoji: { name: string, reaction_id: string }) => emoji.name === emojiName);
+export function getEmoji(emojiName: string) {
+  const emoji = reactions.find((emoji: { name: string, reaction_id: string }) => emoji.name === emojiName);
 
-  if(!findEmojis) return;
+  if(!emoji) return;
 
-  return findEmojis
+  return emoji;
 }

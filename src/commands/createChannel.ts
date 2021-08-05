@@ -3,9 +3,14 @@ import { ICommandsProps } from "../DTO/CommandsDTO";
 
 import cron from 'node-cron';
 
+const { channels } = require('../../config.json');
+
 const createChannel = ({ client, message, args }: ICommandsProps) => {
   const mentions = message.mentions.users;
   const everyoneRole = message.guild?.roles.everyone.id as string;
+  
+  const categoryID = channels.category_id;
+  const channelName = `${message.author.username}'s co-working`;
 
   message.delete();
 
@@ -23,8 +28,6 @@ const createChannel = ({ client, message, args }: ICommandsProps) => {
     }
   ];
 
-  const channelName = `${message.author.username}'s co-working`;
-
   mentions?.map(user => {
     membersPermissions.push({
       id: user.id,
@@ -32,11 +35,12 @@ const createChannel = ({ client, message, args }: ICommandsProps) => {
     });
   });
 
+
   message.guild?.channels.create(channelName, {
     type: "voice",
     userLimit: mentions.size + 1,
     permissionOverwrites: membersPermissions,
-  });
+  }).then(channel => channel.setParent(categoryID));
 
   const job = cron.schedule("* */2 * * *", () => {
       const channel = message.guild?.channels.cache.find(channel => channel.name === channelName);

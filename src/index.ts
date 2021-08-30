@@ -1,11 +1,11 @@
 import { Client, MessageEmbed } from "discord.js";
 import { event } from './events/message';
 import { Commands } from "./DTO/CommandsDTO";
-import { getEmojis } from "./utils/getEmojis";
+import { getEmoji } from "./utils/getEmojis";
 import path from 'path';
 import fs from 'fs';
 
-import { MessageService } from "./database/services/MessageService";
+import { MessageService } from './database/services/MessageService';
 
 import './database';
 
@@ -37,7 +37,7 @@ fs.readdir(commandsPath, (error, files) => {
 
 client.on('ready', () => {
   const status = [
-    { name: "Seja bem-vindo(a) à HUB", type: 0 },
+    { name: 'Seja bem-vindo(a) à HUB', type: 0 },
   ];
 
   function setActivity() {
@@ -55,11 +55,11 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
   const message = await messageService.getMessage({ guild_id: String(guild?.id), message_id: id});
 
-  if(message?.message_id !== id) return;
+  if (message?.message_id !== id) return;
 
   const emojiName = reaction.emoji.name;
-  const emoji = getEmojis(emojiName);
-  
+  const emoji = getEmoji(emojiName);
+
   guildMember?.roles.add(emoji.reaction_id);
 });
 
@@ -69,18 +69,18 @@ client.on('messageReactionRemove', async (reaction, user) => {
 
   const message = await messageService.getMessage({ guild_id: String(guild?.id), message_id: id});
 
-  if(message?.message_id !== id) return;
+  if (message?.message_id !== id) return;
 
   const emojiName = reaction.emoji.name;
-  const emoji = getEmojis(emojiName);
+  const emoji = getEmoji(emojiName);
 
   guildMember?.roles.remove(emoji.reaction_id);
 });
 
-client.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', (member) => {
   const channel = member.guild.systemChannel;
 
-  if(!channel) return;
+  if (!channel) return;
 
   const embed = new MessageEmbed();
 
@@ -92,7 +92,7 @@ client.on('guildMemberAdd', member => {
   channel.send(embed);
 });
 
-client.on('message', message => {
+client.on('message', (message) => {
   event(client, message, commands);
 });
 

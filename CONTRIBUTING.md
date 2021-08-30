@@ -56,8 +56,11 @@ People *love* thorough bug reports. I'm not even kidding.
 
 I'm again borrowing these from [Facebook's Guidelines](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md)
 
-- 2 spaces for indentation rather than tabs
-- You can try running `npm run lint` for style unification
+- We use linting with ESLint
+- 2 spaces for identation, do not use tabs
+- You should run `yarn lint` to lint your code before reviewing a PR
+- Your code will be run against our CI
+- Your code should pass our CI pipeline to be able to be merged against the main branch
 
 ## License
 

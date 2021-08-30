@@ -1,0 +1,21 @@
+name: CI
+
+on: [push]
+
+jobs:
+  execute_eslint_linter:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: yarn install
+    - name: Run ESLint
+      run: yarn eslint
+  # execute_unit_tests:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Install modules
+  #       run: yarn install
+  #     - name: Run unit tests
+  #       run: yarn test

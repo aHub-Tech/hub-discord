@@ -58,6 +58,10 @@ I'm again borrowing these from [Facebook's Guidelines](https://github.com/facebo
 
 - We use linting with ESLint
 - 2 spaces for identation, do not use tabs
+- Use of semicolon `;`
+- Wrap the properties of arrow functions around parentheses
+- Add a space before and after the arrow function `=>`
+- Do not use duplicate imports
 - You should run `yarn lint` to lint your code before reviewing a PR
 - Your code will be run against our CI
 - Your code should pass our CI pipeline to be able to be merged against the main branch
@@ -129,6 +133,10 @@ Todo mundo *gosta* de explicações detalhadas sobre bugs!
 
 - Utilizamos o linter ESLint
 - 2 espaços para identação, não use tabs
+- Uso de ponto e vírgula `;`
+- Envolver as propriedades das arrow functions por volta de parenteses
+- Adicionar um espaço antes e depois da arrow function `=>`
+- Não usar imports duplicados
 - Você deve rodar `yarn lint` para verificar que o código está consistente antes de subir um pull request
 - O seu código será verificado em nosso CI e deve passar todas as etapas
 - Seu código deve passar em nosso pipeline do CI antes de ser mergeado na main

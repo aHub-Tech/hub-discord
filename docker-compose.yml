@@ -1,7 +1,26 @@
-version: "3"
+version: "3.7"
 services:
-  bot:
+  postgres:
+    image: "postgres:latest"
+    container_name: postgres
+    environment:
+      POSTGRES_USER: "${DATABASE_USER}"
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
+      POSTGRES_DB: "${DATABASE_DB}"
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - 5432:5432
+    restart: always
+  app:
     build: ./
+    container_name: bot
+    depends_on:
+      - postgres
     env_file: 
       - .env
     restart: always
+
+volumes:
+    postgres:
+      driver: local

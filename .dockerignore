@@ -1,18 +1,37 @@
 # node_modules
 node_modules/
 
-# environment variables
+# Testes
+**.test.*
+**.spec.*
+jest.config.js
+
+# Lint
+.eslintrc.js
+
+# Environment variables
 .env
 .env.local
 .env.development
+.env.test
 
-# Github actions
+# Git config's
+.git
+.gitignore
+
+# Github
 .github
+LICENSE
+README.md
+CONTRIBUTING.md
 
 # Debug
 .vscode
 
-# docker config
+# Docker config
 Dockerfile
 docker-compose.yml
 .dockerignore
+
+# Packages
+yarn.lock

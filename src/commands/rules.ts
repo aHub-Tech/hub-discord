@@ -8,7 +8,7 @@ interface IRulesProps {
   description: string;
 }
 
-const memberRules = ({ client, message, args }: ICommandsProps) => {
+const memberRules = ({ message }: ICommandsProps) => {
   const embed = new MessageEmbed();
 
   embed.setTitle("Regras");
@@ -19,7 +19,7 @@ const memberRules = ({ client, message, args }: ICommandsProps) => {
   });
 
   message.channel.send(embed);
-}
+};
 
 export const details = {
   name: "rules",
@@ -27,4 +27,4 @@ export const details = {
   aliasses: [ "regras" ],
   enable: true,
   execute: memberRules,
-}
+};

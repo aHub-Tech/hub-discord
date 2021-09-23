@@ -22,4 +22,4 @@ class Message {
   }
 }
 
-export { Message }
+export { Message };

@@ -17,6 +17,6 @@ function event(client: Client, message: Message, commands: Commands) {
   if (!cmd || !cmd.enable) return;
 
   cmd.execute({ client, message, args });
-};
+}
 
 export { event };

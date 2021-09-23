@@ -5,17 +5,17 @@ import { getEmoji } from "../utils/getEmojis";
 
 const { message: messageReaction, reactions } = require('../../reaction.json');
 
-const reactionRole = ({ client, message, args }: ICommandsProps) => {
+const reactionRole = ({ message }: ICommandsProps) => {
   const messageService = new MessageService();
 
-  message.channel.send(messageReaction).then(async msg => {
+  message.channel.send(messageReaction).then(async (msg) => {
     reactions.map(async (reaction: { name: string }) => {
       await msg.react(reaction.name);
+    });
 
-      await messageService.create({
-        guild_id: String(message.guild?.id),
-        message_id: msg.id
-      });
+    await messageService.create({
+      guild_id: String(message.guild?.id),
+      message_id: msg.id
     });
 
     const filter = (reaction: MessageReaction) => reactions.includes(reaction.emoji.name);
@@ -31,7 +31,7 @@ const reactionRole = ({ client, message, args }: ICommandsProps) => {
       guildMember?.roles.add(emoji.reaction_id);
     });
   });
-}
+};
 
 export const details = {
   name: "rr",
@@ -39,4 +39,4 @@ export const details = {
   aliasses: [ "reactionrole" ],
   enable: true,
   execute: reactionRole,
-}
+};

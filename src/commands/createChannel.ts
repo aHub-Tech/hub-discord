@@ -5,7 +5,7 @@ import cron from 'node-cron';
 
 const { channels } = require('../../config.json');
 
-const createChannel = ({ client, message, args }: ICommandsProps) => {
+const createChannel = ({ message }: ICommandsProps) => {
   const mentions = message.mentions.users;
   const everyoneRole = message.guild?.roles.everyone.id as string;
   
@@ -28,7 +28,7 @@ const createChannel = ({ client, message, args }: ICommandsProps) => {
     }
   ];
 
-  mentions?.map(user => {
+  mentions?.map((user) => {
     membersPermissions.push({
       id: user.id,
       allow: permissions,
@@ -40,22 +40,22 @@ const createChannel = ({ client, message, args }: ICommandsProps) => {
     type: "voice",
     userLimit: mentions.size + 1,
     permissionOverwrites: membersPermissions,
-  }).then(channel => channel.setParent(categoryID));
+  }).then((channel) => channel.setParent(categoryID));
 
   const job = cron.schedule("*/5 * * * *", () => {
-      const channel = message.guild?.channels.cache.find(channel => channel.name === channelName);
-      
-      const channelMembers = channel?.members.size;
+    const channel = message.guild?.channels.cache.find((channel) => channel.name === channelName);
+    
+    const channelMembers = channel?.members.size;
 
-      if(channelMembers !== 0) return
+    if(channelMembers !== 0) return;
 
-      channel?.delete();
+    channel?.delete();
 
-      job.destroy();
+    job.destroy();
   });
 
   job.start();
-}
+};
 
 export const details = {
   name: "createchannel",
@@ -63,4 +63,4 @@ export const details = {
   aliasses: [ "criarcanal", "coworking", "cowork", "work", "co-working" ],
   enable: true,
   execute: createChannel,
-}
+};

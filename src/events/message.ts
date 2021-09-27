@@ -7,14 +7,18 @@ function event(client: Client, message: Message, commands: Commands) {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
 
-  if(message.content.indexOf(config.prefix) !== 0) return;
+  const filterPrefixes = config.prefixes.filter((prefix: string) => message.content.startsWith(prefix));
 
-  const args = message.content.slice(config.prefix.length).trim().split(' ');
+  if(!filterPrefixes) return;
+
+  const PREFIX_LENGTH = filterPrefixes[0].length;
+
+  const args = message.content.slice(PREFIX_LENGTH).trim().split(' ');
   const command = String(args.shift()).toLowerCase();
 
   const cmd = commands[command];
 
-  if (!cmd || !cmd.enable) return;
+  if(!cmd || !cmd.enable) return;
 
   cmd.execute({ client, message, args });
 }

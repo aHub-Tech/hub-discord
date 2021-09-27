@@ -1,5 +1,5 @@
 {
-  "prefix": "!",
+  "prefixes": [ "!", ".", "/", "bot" ],
   "channels": {
     "category_id": "860667881745022997"
   }

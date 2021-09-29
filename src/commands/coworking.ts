@@ -1,11 +1,12 @@
-import { OverwriteResolvable, PermissionString } from "discord.js";
+import { Guild, OverwriteResolvable, PermissionString } from "discord.js";
 import { ICommandsProps } from "../DTO/CommandsDTO";
 
 import cron from 'node-cron';
+import { createChannel } from "../utils/createChannel";
 
 const { channels } = require('../../config.json');
 
-const createChannel = ({ message }: ICommandsProps) => {
+const coworking = async ({ message }: ICommandsProps) => {
   const mentions = message.mentions.users;
   const everyoneRole = message.guild?.roles.everyone.id as string;
   
@@ -35,21 +36,22 @@ const createChannel = ({ message }: ICommandsProps) => {
     });
   });
 
+  const channelProps = {
+    guild: message.guild as Guild,
+    categoryID,
+    channelName,
+    limit: mentions.size + 1,
+    membersPermissions,
+  };
 
-  message.guild?.channels.create(channelName, {
-    type: "voice",
-    userLimit: mentions.size + 1,
-    permissionOverwrites: membersPermissions,
-  }).then((channel) => channel.setParent(categoryID));
+  const channel = await createChannel(channelProps);
 
   const job = cron.schedule("*/5 * * * *", () => {
-    const channel = message.guild?.channels.cache.find((channel) => channel.name === channelName);
-    
-    const channelMembers = channel?.members.size;
+    const channelMembers = channel.members.size;
 
     if(channelMembers !== 0) return;
 
-    channel?.delete();
+    channel.delete();
 
     job.destroy();
   });
@@ -58,9 +60,9 @@ const createChannel = ({ message }: ICommandsProps) => {
 };
 
 export const details = {
-  name: "createchannel",
+  name: "coworking",
   description: "Comando para criar salas de co-working.",
-  aliasses: [ "criarcanal", "coworking", "cowork", "work", "co-working" ],
+  aliasses: [ "criarcanal", "createchannel", "cowork", "work", "co-working" ],
   enable: true,
-  execute: createChannel,
+  execute: coworking,
 };

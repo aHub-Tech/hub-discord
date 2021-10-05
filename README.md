@@ -1,16 +1,16 @@
 <h1 align="center">HubBOT</h1>
 
 <p align="center">
-  <a href="#introdução">Introdução</a> |
-  <a href="#tecnologias">Tecnologias</a> |
-  <a href="#contribuindo">Contribuindo</a>
+  <a href="#introdução">Introduction</a> |
+  <a href="#tecnologias">Technologies</a> |
+  <a href="#contribuindo">Contributing</a>
 </p>
 
-## Introdução
-Um bot de Discord para entreterimento e gerenciamento de servidor.
+## Introduction
+A Discord bot for entertainment and guild management.
 
-## Tecnologias
-Projeto desenvolvido usando as seguintes ferramentas:
+## Technologies
+Project developed using the technologies below:
 
 - Node.js
 - Typescript
@@ -21,10 +21,10 @@ Projeto desenvolvido usando as seguintes ferramentas:
 - Node-CRON
 - Discord.js
 
-## Contribuindo
-Antes de começar leia o [guia de contribuição geral da comunidade](https://github.com/aHub-Tech/projects-template/blob/main/CONTRIBUTING.md).
+## Contributing
+Before starting, read the [general community contribution guide](https://github.com/aHub-Tech/projects-template/blob/main/CONTRIBUTING.md).
 
-Você pode clonar o repositório e instalar as dependências, com os seguinte comandos.
+You can clone the repository and install dependencies with the following commands.
 
 Clonando repositório.
 ```bash
@@ -32,13 +32,13 @@ git clone https://github.com/aHub-Tech/hub-discord.git
 # gh repo clone aHub-Tech/hub-discord
 ```
 
-Instalando as dependências.
+Installing dependencies.
 ```bash
 yarn install
 ```
 
-### Configurando variáveis de ambiente
-Antes de iniciar o projeto você precisa configurar algumas variáveis de ambiente, crie um arquivo `.env` na raiz do projeto, com as seguintes variáveis.
+### Configuring environment variables
+Before starting the project you need to set some environment variables, create a `.env` file at the root of the project, with the following variables.
 
 ```bash
 # Secret token
@@ -52,24 +52,24 @@ DATABASE_USER=your_database_user
 DATABASE_PASSWORD=your_database_password
 ```
 
-Para iniciar o projeto você pode usar o seguinte comando.
+To start the project you can use the following command.
 
 ```bash
 yarn dev
 ```
 
-Outros comandos que podem ser usados, e que estão presente no `package.json`.
+Other commands can be used.
 
 ```bash
-# Fazer o build do projeto
+# Build the project
 yarn buid
 
-# Iniciar com build do projeto
+# Start built project
 yarn start
 
-# Rodar os testes
+# Start tests
 yarn test
 
-# Usar a CLI do TypeORM
+# Use TypeORM CLI
 yarn typeorm
 ```
